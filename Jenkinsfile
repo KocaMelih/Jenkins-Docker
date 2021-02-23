@@ -9,7 +9,9 @@ pipeline {
                 /*For Mac & Linux machine */
                sh  'mvn clean package'
             }
-
+            step{
+                sh 'docker build . -t tomcatwebapp:{$env.BUILD_ID}'
+            }
             post{
                 success{
                     echo 'Now Archiving ....'
